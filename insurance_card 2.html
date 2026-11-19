@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Страхование: недвижимость, здоровье, ОСАГО</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap');
+  :root {
+    --primary: #a9cdf0;
+    --primary-dark: #7aa7d6;
+    --accent: #f7d9a8;
+    --text: #4a4663;
+    --muted: #7f7b94;
+    --bg: #fdf9f6;
+    --white: #ffffff;
+    --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text);
+    background: linear-gradient(135deg, #cfe3f7 0%, #e6d5f3 55%, #fbd9e3 100%);
+    overflow: hidden;
+  }
+  .hero .photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.25;
+  }
+  .hero-content { position: relative; max-width: 720px; animation: fadeUp 1s ease both; }
+  .shield {
+    font-size: 64px;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+  }
+  h1 { font-family: var(--serif); font-size: clamp(30px, 6vw, 52px); margin: 16px 0; line-height: 1.15; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+  .hl { color: #c9a27e; }
+  .subtitle { font-size: clamp(16px, 3vw, 20px); opacity: 0.95; margin-bottom: 28px; }
+
+  .btn-group { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 16px 28px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 17px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,0.2); }
+  .btn-insta { background: linear-gradient(45deg, #f6d1bf, #f2b8cc, #dcc3ee); color: var(--text); }
+  .btn-max { background: var(--white); color: #5f83ad; box-shadow: 0 4px 14px rgba(122,167,214,0.25); }
+  .pulse { animation: pulse 2s infinite; }
+
+  section { padding: 64px 20px; max-width: 1000px; margin: 0 auto; }
+  h2 { font-family: var(--serif); text-align: center; font-size: clamp(26px, 4vw, 38px); margin-bottom: 36px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+
+  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+  .card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 28px 24px;
+    box-shadow: 0 6px 20px rgba(31,94,255,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card { border-top: 5px solid #a9cdf0; }
+  .card:nth-child(2) { border-top-color: #bfe3cf; }
+  .card:nth-child(3) { border-top-color: #f7d9a8; }
+  .card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 16px 36px rgba(31,94,255,0.18); }
+  .card .icon { font-size: 40px; margin-bottom: 12px; }
+  .card h3 { font-family: var(--serif); font-size: 24px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+  .card p { color: var(--muted); margin-bottom: 14px; }
+  .card ul { padding-left: 18px; color: var(--muted); margin-bottom: 18px; }
+  .card li { margin-bottom: 6px; }
+  .card a {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 10px;
+    background: var(--primary);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .advantages { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; text-align: center; }
+  .adv { background: var(--white); border-radius: 16px; padding: 24px 16px; }
+  .adv .num { font-family: var(--serif); font-size: 34px; font-weight: 600; color: #7aa7d6; }
+  .adv .label { color: var(--muted); font-size: 15px; }
+
+  .final {
+    text-align: center;
+    background: linear-gradient(135deg, #f7e3c8, #f6cfdc);
+    color: var(--text);
+    border-radius: 24px;
+    padding: 48px 24px;
+    margin: 0 20px 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .final h2 { margin-bottom: 14px; }
+  .final p { margin-bottom: 24px; font-size: 18px; }
+  .final .btn-max { color: var(--text); }
+  .final h2 { color: var(--text); }
+
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px 20px 40px; }
+
+  .reveal { animation: rise 0.8s ease both; }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.6); }
+    70% { box-shadow: 0 0 0 16px rgba(255,255,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-content">
+    <div class="shield">🛡️</div>
+    <h1>Страхование, которое защищает <span class="hl">то, что важно</span></h1>
+    <p class="subtitle">Недвижимость, здоровье и ОСАГО — оформим быстро, без лишней бумажной волокиты</p>
+    <div class="btn-group">
+      <a class="btn btn-insta" href="https://www.instagram.com/voldavina.m97/" target="_blank" rel="noopener">Заявка в Instagram</a>
+      <a class="btn btn-max pulse" href="https://max.ru/u/f9LHodD0cOK91Usn4qNexvQaseXHat5Ee0LxLkPMvZfDqTegomkxre1cH3o" target="_blank" rel="noopener">Заявка в MAX</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2 class="reveal">Что мы страхуем</h2>
+  <div class="services">
+    <div class="card reveal">
+      <div class="icon">🏠</div>
+      <h3>Недвижимость</h3>
+      <p>Защита квартиры, дома и имущества от пожара, залива и других рисков.</p>
+      <ul>
+        <li>Квартира и дом</li>
+        <li>Отделка и имущество</li>
+        <li>Ипотечное страхование</li>
+      </ul>
+      <a href="https://www.instagram.com/voldavina.m97/" target="_blank" rel="noopener">Рассчитать</a>
+    </div>
+    <div class="card reveal">
+      <div class="icon">❤️</div>
+      <h3>Здоровье</h3>
+      <p>Медицинская защита для вас и близких, чтобы лечение не било по бюджету.</p>
+      <ul>
+        <li>Программы для семьи</li>
+        <li>Страхование для сотрудников</li>
+        <li>Программы для выезда за границу</li>
+      </ul>
+      <a href="https://max.ru/u/f9LHodD0cOK91Usn4qNexvQaseXHat5Ee0LxLkPMvZfDqTegomkxre1cH3o" target="_blank" rel="noopener">Подобрать программу</a>
+    </div>
+    <div class="card reveal">
+      <div class="icon">🚗</div>
+      <h3>ОСАГО</h3>
+      <p>Полис для вашего автомобиля. Оформление онлайн, без очередей.</p>
+      <ul>
+        <li>Оформление за несколько минут</li>
+        <li>Помощь с выбором периода</li>
+        <li>Поддержка при страховом случае</li>
+      </ul>
+      <a href="https://max.ru/u/f9LHodD0cOK91Usn4qNexvQaseXHat5Ee0LxLkPMvZfDqTegomkxre1cH3o" target="_blank" rel="noopener">Оформить ОСАГО</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="reveal">Почему выбирают нас</h2>
+  <div class="advantages">
+    <div class="adv reveal"><div class="num">от 1 дня</div><div class="label">Срок оформления</div></div>
+  </div>
+</section>
+
+<div class="final reveal">
+  <h2>Получите расчёт за 5 минут</h2>
+  <p>Напишите нам в удобный мессенджер — подберём вариант под ваш запрос</p>
+  <div class="btn-group">
+    <a class="btn btn-insta" href="https://www.instagram.com/voldavina.m97/" target="_blank" rel="noopener">Instagram</a>
+    <a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOK91Usn4qNexvQaseXHat5Ee0LxLkPMvZfDqTegomkxre1cH3o" target="_blank" rel="noopener">MAX</a>
+  </div>
+</div>
+
+<footer>
+  <p>Условия страхования уточняйте в договоре. Стоимость и покрытие зависят от выбранной программы.</p>
+</footer>
+
+
+</body>
+</html>
